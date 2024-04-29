@@ -68,42 +68,20 @@ def photoshop_brightness(input_img, brightness = 0):
 
     return img
 
-# def map_point(point, direction, distance_ratio):
-#     # Assuming point is a tuple (x, y) in the eye camera plane
-#     x, y = point
-    
-#     # Assuming distance_ratio is the ratio of distances between the two planes (eye, world cameras)
-#     mapped_x = x * distance_ratio
-#     mapped_y = y * distance_ratio
-#     # Map the direction vector
-#     mapped_dx = direction[0] * distance_ratio
-#     mapped_dy = direction[1] * distance_ratio
-#     # Return the new coordinates in the second plane
-#     return (mapped_x, mapped_y), (mapped_dx, mapped_dy)
-
 def map_gaze_to_screen(size, direction, eye_center_radius, factor=1):
-    gaze = (0,0)
-    print(size, direction, eye_center_radius)
     try:
-        screen_size = size  # Replace with your actual screen size
-        center_x = eye_center[0]
-        center_y = eye_center[1]
-        intersection_x = center_x + direction[0] * screen_size[0]
-        intersection_y = center_y + direction[1] * screen_size[1]
-        # Calculate the distance
-        world_distance = math.sqrt((intersection_x - center_x)**2 + (intersection_y - center_y)**2)
-
-        distance_ratio = world_distance/eye_center_radius
-        pupil_distance = int(math.dist(eye_center,pupil_center)) * (1/factor)
-
-        mapped_distance = pupil_distance*distance_ratio
-        mapped_gaze = tuple((np.array(eye_center) + mapped_distance * -direction_vector).astype(int))
-        #map_point(pupil_center, direction, distance_ratio)
-        print(world_distance)
-        print(distance_ratio)
-        print(pupil_distance)
-        print(mapped_gaze)
-        gaze = mapped_gaze
+        
+        #TO-DO Define the gaze to screen logic here.
+        # To implement this function, you'll need to follow these steps:
+        
+        # 1- Define Parameters: Determine the values for the parameters size, direction, eye_center_radius, and optionally factor. 
+        # 2- Calculate Screen Intersection: Implement the calculation to find where the gaze direction intersects with the screen or virtual space. This involves extending the gaze direction vector to the edge of the screen.
+        # 3- Calculate Distance: Compute the distance between the intersection point and the center of the eye.
+        # 4- Calculate Ratios: Determine the ratios between the distance of the gaze from the eye center and the radius of the eye.
+        # 5- Adjust Pupil Distance: Adjust the pupil distance (distance between the center of the eye and the pupil) based on a given factor, if necessary.
+        # 6- Map Gaze: Map the adjusted pupil distance and the distance ratios to determine the final position of the gaze on the screen or virtual space.
+        # 7- Return Gaze Position: Return the mapped gaze position as a tuple.
+        
     except Exception as e:
         print(e)
     return gaze
